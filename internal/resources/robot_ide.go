@@ -86,7 +86,6 @@ func GetRobotIDEPod(robotIDE *robotv1alpha1.RobotIDE, podNamespacedName *types.N
 	configure.SchedulePod(&pod, label.GetTenancyMap(robotIDE))
 	configure.InjectGenericEnvironmentVariables(&pod, robot)
 	configure.InjectRMWImplementationConfiguration(&pod, robot)
-	configure.InjectPodDiscoveryServerConnection(&pod, robot.Status.DiscoveryServerStatus.Status.ConnectionInfo)
 	configure.InjectRuntimeClass(&pod, robot, node)
 	if robotIDE.Spec.Display && label.GetTargetRobotVDI(robotIDE) != "" {
 		// TODO: Add control for validating robot VDI
