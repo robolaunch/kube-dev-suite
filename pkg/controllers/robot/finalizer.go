@@ -32,12 +32,7 @@ func (r *RobotReconciler) reconcileCheckDeletion(ctx context.Context, instance *
 
 		if controllerutil.ContainsFinalizer(instance, robotFinalizer) {
 
-			err := r.waitForROSBridgeDeletion(ctx, instance)
-			if err != nil {
-				return err
-			}
-
-			err = r.waitForLoaderJobDeletion(ctx, instance)
+			err := r.waitForLoaderJobDeletion(ctx, instance)
 			if err != nil {
 				return err
 			}
@@ -79,61 +74,6 @@ func (r *RobotReconciler) reconcileCheckDeletion(ctx context.Context, instance *
 		}, instance.Name)
 	}
 
-	return nil
-}
-
-func (r *RobotReconciler) waitForROSBridgeDeletion(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	rosBridgeQuery := &robotv1alpha1.ROSBridge{}
-	err := r.Get(ctx, *instance.GetROSBridgeMetadata(), rosBridgeQuery)
-	if err != nil && errors.IsNotFound(err) {
-		return nil
-	} else if err != nil {
-		return err
-	} else {
-		logger.Info("FINALIZER: ROS bridge is being deleted.")
-		err := r.Delete(ctx, rosBridgeQuery)
-		if err != nil {
-			return err
-		}
-
-		instance.Status.Phase = robotv1alpha1.RobotPhaseDeletingBridge
-		err = r.reconcileUpdateInstanceStatus(ctx, instance)
-		if err != nil {
-			return err
-		}
-
-		resourceInterface := r.DynamicClient.Resource(schema.GroupVersionResource{
-			Group:    rosBridgeQuery.GroupVersionKind().Group,
-			Version:  rosBridgeQuery.GroupVersionKind().Version,
-			Resource: "rosbridges",
-		})
-		bridgeWatcher, err := resourceInterface.Watch(ctx, metav1.ListOptions{
-			FieldSelector: "metadata.name=" + instance.GetROSBridgeMetadata().Name,
-		})
-		if err != nil {
-			return err
-		}
-
-		defer bridgeWatcher.Stop()
-
-		bridgeDeleted := false
-		for {
-			if !bridgeDeleted {
-				select {
-				case event := <-bridgeWatcher.ResultChan():
-
-					if event.Type == watch.Deleted {
-						logger.Info("FINALIZER: ROS bridge is deleted gracefully.")
-						bridgeDeleted = true
-					}
-				}
-			} else {
-				break
-			}
-
-		}
-	}
 	return nil
 }
 
