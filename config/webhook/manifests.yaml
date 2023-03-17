@@ -16,7 +16,7 @@ webhooks:
   name: mrobotide.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -36,7 +36,7 @@ webhooks:
   name: mrobotvdi.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -56,7 +56,7 @@ webhooks:
   name: mworkspacemanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -76,7 +76,7 @@ webhooks:
   name: mbuildmanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -96,7 +96,7 @@ webhooks:
   name: mlaunchmanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -116,7 +116,7 @@ webhooks:
   name: mmetricscollector.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -136,7 +136,7 @@ webhooks:
   name: mrobot.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -156,7 +156,7 @@ webhooks:
   name: mdiscoveryserver.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -183,7 +183,7 @@ webhooks:
   name: vrobotide.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -203,7 +203,7 @@ webhooks:
   name: vrobotvdi.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -223,7 +223,7 @@ webhooks:
   name: vworkspacemanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -243,7 +243,7 @@ webhooks:
   name: vbuildmanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -263,7 +263,7 @@ webhooks:
   name: vlaunchmanager.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -283,7 +283,7 @@ webhooks:
   name: vmetricscollector.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -303,7 +303,7 @@ webhooks:
   name: vrobot.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:
@@ -323,7 +323,7 @@ webhooks:
   name: vdiscoveryserver.kb.io
   rules:
   - apiGroups:
-    - robot.roboscale.io
+    - dev.roboscale.io
     apiVersions:
     - v1alpha1
     operations:

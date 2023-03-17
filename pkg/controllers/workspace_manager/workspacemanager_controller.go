@@ -39,9 +39,9 @@ type WorkspaceManagerReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=workspacemanagers,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=workspacemanagers/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=workspacemanagers/finalizers,verbs=update
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=workspacemanagers,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=workspacemanagers/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=workspacemanagers/finalizers,verbs=update
 
 //+kubebuilder:rbac:groups=batch,resources=jobs,verbs=get;list;watch;create;update;patch;delete
 

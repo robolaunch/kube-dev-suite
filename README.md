@@ -104,7 +104,7 @@ Robot deployment steps will be instructed here.
 
 ```yaml
 # linorobot2.yaml
-apiVersion: robot.roboscale.io/v1alpha1
+apiVersion: dev.roboscale.io/v1alpha1
 kind: Robot
 metadata:
   name: linorobot2

@@ -12,7 +12,7 @@ metadata:
   name: buildmanager-viewer-role
 rules:
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - buildmanagers
   verbs:
@@ -20,7 +20,7 @@ rules:
   - list
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - buildmanagers/status
   verbs:

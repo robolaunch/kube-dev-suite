@@ -47,9 +47,9 @@ type RobotDevSuiteReconciler struct {
 	DynamicClient dynamic.Interface
 }
 
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotdevsuites,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotdevsuites/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotdevsuites/finalizers,verbs=update
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotdevsuites,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotdevsuites/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotdevsuites/finalizers,verbs=update
 
 var logger logr.Logger
 

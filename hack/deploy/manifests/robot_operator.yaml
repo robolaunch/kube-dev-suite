@@ -17,7 +17,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: buildmanagers.robot.roboscale.io
+  name: buildmanagers.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -29,7 +29,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: BuildManager
     listKind: BuildManagerList
@@ -308,9 +308,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: discoveryservers.robot.roboscale.io
+  name: discoveryservers.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: DiscoveryServer
     listKind: DiscoveryServerList
@@ -425,7 +425,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: launchmanagers.robot.roboscale.io
+  name: launchmanagers.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -437,7 +437,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: LaunchManager
     listKind: LaunchManagerList
@@ -920,7 +920,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: metricscollectors.robot.roboscale.io
+  name: metricscollectors.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -932,7 +932,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: MetricsCollector
     listKind: MetricsCollectorList
@@ -1117,9 +1117,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: robotartifacts.robot.roboscale.io
+  name: robotartifacts.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: RobotArtifact
     listKind: RobotArtifactList
@@ -1837,9 +1837,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: robotdevsuites.robot.roboscale.io
+  name: robotdevsuites.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: RobotDevSuite
     listKind: RobotDevSuiteList
@@ -1965,9 +1965,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: robotides.robot.roboscale.io
+  name: robotides.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: RobotIDE
     listKind: RobotIDEList
@@ -2056,7 +2056,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: robots.robot.roboscale.io
+  name: robots.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -2068,7 +2068,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: Robot
     listKind: RobotList
@@ -3407,7 +3407,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: robotvdis.robot.roboscale.io
+  name: robotvdis.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -3419,7 +3419,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: RobotVDI
     listKind: RobotVDIList
@@ -3521,9 +3521,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: rosbridges.robot.roboscale.io
+  name: rosbridges.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: ROSBridge
     listKind: ROSBridgeList
@@ -3801,7 +3801,7 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: robot-system/robot-serving-cert
     controller-gen.kubebuilder.io/version: v0.9.2
-  name: workspacemanagers.robot.roboscale.io
+  name: workspacemanagers.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook
@@ -3813,7 +3813,7 @@ spec:
           path: /convert
       conversionReviewVersions:
         - v1
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: WorkspaceManager
     listKind: WorkspaceManagerList
@@ -4097,7 +4097,7 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - buildmanagers
     verbs:
@@ -4109,13 +4109,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - buildmanagers/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - buildmanagers/status
     verbs:
@@ -4123,7 +4123,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - discoveryservers
     verbs:
@@ -4135,13 +4135,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - discoveryservers/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - discoveryservers/status
     verbs:
@@ -4149,7 +4149,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - launchmanagers
     verbs:
@@ -4161,13 +4161,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - launchmanagers/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - launchmanagers/status
     verbs:
@@ -4175,7 +4175,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - metricscollectors
     verbs:
@@ -4187,13 +4187,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - metricscollectors/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - metricscollectors/status
     verbs:
@@ -4201,7 +4201,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotdevsuites
     verbs:
@@ -4213,13 +4213,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotdevsuites/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotdevsuites/status
     verbs:
@@ -4227,7 +4227,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotides
     verbs:
@@ -4239,13 +4239,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotides/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotides/status
     verbs:
@@ -4253,7 +4253,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robots
     verbs:
@@ -4265,13 +4265,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robots/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robots/status
     verbs:
@@ -4279,7 +4279,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotvdis
     verbs:
@@ -4291,13 +4291,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotvdis/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - robotvdis/status
     verbs:
@@ -4305,7 +4305,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - rosbridges
     verbs:
@@ -4317,13 +4317,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - rosbridges/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - rosbridges/status
     verbs:
@@ -4331,7 +4331,7 @@ rules:
       - patch
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - workspacemanagers
     verbs:
@@ -4343,13 +4343,13 @@ rules:
       - update
       - watch
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - workspacemanagers/finalizers
     verbs:
       - update
   - apiGroups:
-      - robot.roboscale.io
+      - dev.roboscale.io
     resources:
       - workspacemanagers/status
     verbs:
@@ -4684,7 +4684,7 @@ webhooks:
     name: mrobotide.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4704,7 +4704,7 @@ webhooks:
     name: mrobotvdi.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4724,7 +4724,7 @@ webhooks:
     name: mworkspacemanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4744,7 +4744,7 @@ webhooks:
     name: mbuildmanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4764,7 +4764,7 @@ webhooks:
     name: mlaunchmanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4784,7 +4784,7 @@ webhooks:
     name: mmetricscollector.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4804,7 +4804,7 @@ webhooks:
     name: mrobot.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4824,7 +4824,7 @@ webhooks:
     name: mdiscoveryserver.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4859,7 +4859,7 @@ webhooks:
     name: vrobotide.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4879,7 +4879,7 @@ webhooks:
     name: vrobotvdi.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4899,7 +4899,7 @@ webhooks:
     name: vworkspacemanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4919,7 +4919,7 @@ webhooks:
     name: vbuildmanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4939,7 +4939,7 @@ webhooks:
     name: vlaunchmanager.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4959,7 +4959,7 @@ webhooks:
     name: vmetricscollector.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4979,7 +4979,7 @@ webhooks:
     name: vrobot.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:
@@ -4999,7 +4999,7 @@ webhooks:
     name: vdiscoveryserver.kb.io
     rules:
       - apiGroups:
-          - robot.roboscale.io
+          - dev.roboscale.io
         apiVersions:
           - v1alpha1
         operations:

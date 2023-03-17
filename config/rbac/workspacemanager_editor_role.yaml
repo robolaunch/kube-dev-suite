@@ -12,7 +12,7 @@ metadata:
   name: workspacemanager-editor-role
 rules:
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers
   verbs:
@@ -24,7 +24,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers/status
   verbs:

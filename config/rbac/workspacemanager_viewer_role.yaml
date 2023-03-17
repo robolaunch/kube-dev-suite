@@ -12,7 +12,7 @@ metadata:
   name: workspacemanager-viewer-role
 rules:
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers
   verbs:
@@ -20,7 +20,7 @@ rules:
   - list
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers/status
   verbs:

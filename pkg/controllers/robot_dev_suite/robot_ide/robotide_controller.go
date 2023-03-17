@@ -40,9 +40,9 @@ type RobotIDEReconciler struct {
 	DynamicClient dynamic.Interface
 }
 
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotides,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotides/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=robotides/finalizers,verbs=update
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotides,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotides/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=robotides/finalizers,verbs=update
 
 //+kubebuilder:rbac:groups=core,resources=pods,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=core,resources=services,verbs=get;list;watch;create;update;patch;delete

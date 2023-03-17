@@ -49,9 +49,9 @@ type BuildManagerReconciler struct {
 	DynamicClient dynamic.Interface
 }
 
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=buildmanagers,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=buildmanagers/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=robot.roboscale.io,resources=buildmanagers/finalizers,verbs=update
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=buildmanagers,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=buildmanagers/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=dev.roboscale.io,resources=buildmanagers/finalizers,verbs=update
 
 //+kubebuilder:rbac:groups=core,resources=configmaps,verbs=get;list;watch;create;update;patch;delete
 //+kubebuilder:rbac:groups=batch,resources=jobs,verbs=get;list;watch;create;update;patch;delete

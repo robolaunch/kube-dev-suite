@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.9.2
   creationTimestamp: null
-  name: robotides.robot.roboscale.io
+  name: robotides.dev.roboscale.io
 spec:
-  group: robot.roboscale.io
+  group: dev.roboscale.io
   names:
     kind: RobotIDE
     listKind: RobotIDEList

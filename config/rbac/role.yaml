@@ -114,7 +114,7 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - buildmanagers
   verbs:
@@ -126,13 +126,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - buildmanagers/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - buildmanagers/status
   verbs:
@@ -140,7 +140,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - discoveryservers
   verbs:
@@ -152,13 +152,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - discoveryservers/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - discoveryservers/status
   verbs:
@@ -166,7 +166,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - launchmanagers
   verbs:
@@ -178,13 +178,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - launchmanagers/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - launchmanagers/status
   verbs:
@@ -192,7 +192,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - metricscollectors
   verbs:
@@ -204,13 +204,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - metricscollectors/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - metricscollectors/status
   verbs:
@@ -218,7 +218,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotdevsuites
   verbs:
@@ -230,13 +230,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotdevsuites/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotdevsuites/status
   verbs:
@@ -244,7 +244,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotides
   verbs:
@@ -256,13 +256,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotides/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotides/status
   verbs:
@@ -270,7 +270,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robots
   verbs:
@@ -282,13 +282,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robots/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robots/status
   verbs:
@@ -296,7 +296,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotvdis
   verbs:
@@ -308,13 +308,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotvdis/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - robotvdis/status
   verbs:
@@ -322,7 +322,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - rosbridges
   verbs:
@@ -334,13 +334,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - rosbridges/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - rosbridges/status
   verbs:
@@ -348,7 +348,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers
   verbs:
@@ -360,13 +360,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers/finalizers
   verbs:
   - update
 - apiGroups:
-  - robot.roboscale.io
+  - dev.roboscale.io
   resources:
   - workspacemanagers/status
   verbs:

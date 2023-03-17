@@ -1,10 +1,10 @@
 # API Reference
 
 ## Packages
-- [robot.roboscale.io/v1alpha1](#robotroboscaleiov1alpha1)
+- [dev.roboscale.io/v1alpha1](#robotroboscaleiov1alpha1)
 
 
-## robot.roboscale.io/v1alpha1
+## dev.roboscale.io/v1alpha1
 
 Package v1alpha1 contains API Schema definitions for the robot v1alpha1 API group
 
@@ -31,7 +31,7 @@ Robot is the Schema for the robots API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `Robot`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[RobotSpec](#robotspec)_ |  |
@@ -100,7 +100,7 @@ BuildManager is the Schema for the buildmanagers API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `BuildManager`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[BuildManagerSpec](#buildmanagerspec)_ |  |
@@ -150,7 +150,7 @@ LaunchManager is the Schema for the launchmanagers API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `LaunchManager`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[LaunchManagerSpec](#launchmanagerspec)_ |  |
@@ -199,7 +199,7 @@ RobotDevSuite is the Schema for the robotdevsuites API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `RobotDevSuite`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[RobotDevSuiteSpec](#robotdevsuitespec)_ |  |
@@ -253,7 +253,7 @@ DiscoveryServer is the Schema for the discoveryservers API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `DiscoveryServer`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[DiscoveryServerSpec](#discoveryserverspec)_ |  |
@@ -308,7 +308,7 @@ ROSBridge is the Schema for the rosbridges API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `ROSBridge`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[ROSBridgeSpec](#rosbridgespec)_ |  |
@@ -359,7 +359,7 @@ RobotVDI is the Schema for the robotvdis API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `RobotVDI`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[RobotVDISpec](#robotvdispec)_ |  |
@@ -415,7 +415,7 @@ RobotIDE is the Schema for the robotides API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `RobotIDE`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `spec` _[RobotIDESpec](#robotidespec)_ |  |
@@ -799,7 +799,7 @@ RobotArtifact is the Schema for the robotartifacts API
 
 | Field | Description |
 | --- | --- |
-| `apiVersion` _string_ | `robot.roboscale.io/v1alpha1`
+| `apiVersion` _string_ | `dev.roboscale.io/v1alpha1`
 | `kind` _string_ | `RobotArtifact`
 | `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |
 | `template` _[RobotSpec](#robotspec)_ |  |

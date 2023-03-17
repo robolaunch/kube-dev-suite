@@ -2,7 +2,7 @@
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: robots.robot.roboscale.io
+  name: robots.dev.roboscale.io
 spec:
   conversion:
     strategy: Webhook

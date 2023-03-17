@@ -11,7 +11,7 @@ import (
 
 func (r *BuildManagerReconciler) reconcileCheckDeletion(ctx context.Context, instance *robotv1alpha1.BuildManager) error {
 
-	bmFinalizer := "buildmanager.robot.roboscale.io/finalizer"
+	bmFinalizer := "buildmanager.dev.roboscale.io/finalizer"
 
 	if instance.DeletionTimestamp.IsZero() {
 

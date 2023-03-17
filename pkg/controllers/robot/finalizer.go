@@ -17,7 +17,7 @@ import (
 
 func (r *RobotReconciler) reconcileCheckDeletion(ctx context.Context, instance *robotv1alpha1.Robot) error {
 
-	robotFinalizer := "robot.roboscale.io/finalizer"
+	robotFinalizer := "dev.roboscale.io/finalizer"
 
 	if instance.DeletionTimestamp.IsZero() {
 

@@ -1,4 +1,4 @@
-apiVersion: robot.roboscale.io/v1alpha1
+apiVersion: dev.roboscale.io/v1alpha1
 kind: BuildManager
 metadata:
   labels:

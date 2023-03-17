@@ -9,7 +9,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: Robot
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
@@ -22,7 +22,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: BuildManager
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
@@ -35,7 +35,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: RobotDevSuite
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
@@ -44,7 +44,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: RobotVDI
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
@@ -57,7 +57,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: RobotIDE
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
@@ -70,7 +70,7 @@ resources:
     namespaced: true
   controller: true
   domain: roboscale.io
-  group: robot
+  group: dev
   kind: WorkspaceManager
   path: github.com/robolaunch/kube-dev-suite/api/v1alpha1
   version: v1alpha1
