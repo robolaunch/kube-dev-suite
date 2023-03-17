@@ -8,7 +8,6 @@ import (
 func init() {
 	SchemeBuilder.Register(&Robot{}, &RobotList{})
 	SchemeBuilder.Register(&ROSBridge{}, &ROSBridgeList{})
-	SchemeBuilder.Register(&DiscoveryServer{}, &DiscoveryServerList{})
 	SchemeBuilder.Register(&RobotArtifact{}, &RobotArtifactList{})
 }
 
@@ -34,28 +33,6 @@ type RobotList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []Robot `json:"items"`
-}
-
-//+genclient
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-
-// DiscoveryServer is the Schema for the discoveryservers API
-type DiscoveryServer struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   DiscoveryServerSpec   `json:"spec,omitempty"`
-	Status DiscoveryServerStatus `json:"status,omitempty"`
-}
-
-//+kubebuilder:object:root=true
-
-// DiscoveryServerList contains a list of DiscoveryServer
-type DiscoveryServerList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []DiscoveryServer `json:"items"`
 }
 
 //+genclient
@@ -180,8 +157,6 @@ type RobotSpec struct {
 	RMWImplementation RMWImplementation `json:"rmwImplementation"`
 	// Resource limitations of robot containers.
 	Storage Storage `json:"storage,omitempty"`
-	// Discovery server template
-	DiscoveryServerTemplate DiscoveryServerSpec `json:"discoveryServerTemplate,omitempty"`
 	// ROS bridge template
 	ROSBridgeTemplate ROSBridgeSpec `json:"rosBridgeTemplate,omitempty"`
 	// Workspace manager template
@@ -209,11 +184,6 @@ type VolumeStatuses struct {
 	Usr       VolumeStatus `json:"usr,omitempty"`
 	Opt       VolumeStatus `json:"opt,omitempty"`
 	Workspace VolumeStatus `json:"workspace,omitempty"`
-}
-
-type DiscoveryServerInstanceStatus struct {
-	Created bool                  `json:"created,omitempty"`
-	Status  DiscoveryServerStatus `json:"status,omitempty"`
 }
 
 type ROSBridgeInstanceStatus struct {
@@ -269,8 +239,6 @@ type RobotStatus struct {
 	NodeName string `json:"nodeName,omitempty"`
 	// Volume status
 	VolumeStatuses VolumeStatuses `json:"volumeStatuses,omitempty"`
-	// Discovery server instance status
-	DiscoveryServerStatus DiscoveryServerInstanceStatus `json:"discoveryServerStatus,omitempty"`
 	// ROS bridge instance status
 	ROSBridgeStatus ROSBridgeInstanceStatus `json:"rosBridgeStatus,omitempty"`
 	// Robot development suite instance status
@@ -287,61 +255,6 @@ type RobotStatus struct {
 	AttachedBuildObject AttachedBuildObject `json:"attachedBuildObject,omitempty"`
 	// Attached dev object information
 	AttachedDevObjects []AttachedDevObject `json:"attachedDevObjects,omitempty"`
-}
-
-// ********************************
-// DiscoveryServer types
-// ********************************
-
-type DiscoveryServerInstanceType string
-
-const (
-	DiscoveryServerInstanceTypeServer DiscoveryServerInstanceType = "Server"
-	DiscoveryServerInstanceTypeClient DiscoveryServerInstanceType = "Client"
-)
-
-// DiscoveryServerSpec defines the desired state of DiscoveryServer
-type DiscoveryServerSpec struct {
-	Type      DiscoveryServerInstanceType `json:"type,omitempty"`
-	Reference corev1.ObjectReference      `json:"reference,omitempty"`
-	Cluster   string                      `json:"cluster,omitempty"`
-	Hostname  string                      `json:"hostname,omitempty"`
-	Subdomain string                      `json:"subdomain,omitempty"`
-	Image     string                      `json:"image,omitempty"`
-	Args      []string                    `json:"args,omitempty"`
-}
-
-type DiscoveryServerServiceStatus struct {
-	Created bool `json:"created,omitempty"`
-}
-
-type DiscoveryServerPodStatus struct {
-	Created bool            `json:"created,omitempty"`
-	Phase   corev1.PodPhase `json:"phase,omitempty"`
-	IP      string          `json:"ip,omitempty"`
-}
-
-type DiscoveryServerServiceExportStatus struct {
-	Created bool `json:"created,omitempty"`
-}
-
-type DiscoveryServerConfigMapStatus struct {
-	Created bool `json:"created,omitempty"`
-}
-
-type ConnectionInfo struct {
-	IP            string `json:"ip,omitempty"`
-	ConfigMapName string `json:"configMapName,omitempty"`
-}
-
-// DiscoveryServerStatus defines the observed state of DiscoveryServer
-type DiscoveryServerStatus struct {
-	Phase               DiscoveryServerPhase               `json:"phase,omitempty"`
-	ServiceStatus       DiscoveryServerServiceStatus       `json:"serviceStatus,omitempty"`
-	ServiceExportStatus DiscoveryServerServiceExportStatus `json:"serviceExportStatus,omitempty"`
-	PodStatus           DiscoveryServerPodStatus           `json:"podStatus,omitempty"`
-	ConfigMapStatus     DiscoveryServerConfigMapStatus     `json:"configMapStatus,omitempty"`
-	ConnectionInfo      ConnectionInfo                     `json:"connectionInfo,omitempty"`
 }
 
 // ********************************

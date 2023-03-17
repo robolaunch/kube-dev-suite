@@ -2,10 +2,8 @@ package v1alpha1
 
 import (
 	"errors"
-	"reflect"
 
 	"github.com/robolaunch/robot-operator/internal"
-	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
@@ -200,79 +198,4 @@ func (r *Robot) setRepositoryInfo() error {
 
 	return nil
 
-}
-
-// ********************************
-// DiscoveryServer webhooks
-// ********************************
-
-// log is for logging in this package.
-var discoveryserverlog = logf.Log.WithName("discoveryserver-resource")
-
-func (r *DiscoveryServer) SetupWebhookWithManager(mgr ctrl.Manager) error {
-	return ctrl.NewWebhookManagedBy(mgr).
-		For(r).
-		Complete()
-}
-
-//+kubebuilder:webhook:path=/mutate-robot-roboscale-io-v1alpha1-discoveryserver,mutating=true,failurePolicy=fail,sideEffects=None,groups=robot.roboscale.io,resources=discoveryservers,verbs=create;update,versions=v1alpha1,name=mdiscoveryserver.kb.io,admissionReviewVersions=v1
-
-var _ webhook.Defaulter = &DiscoveryServer{}
-
-// Default implements webhook.Defaulter so a webhook will be registered for the type
-func (r *DiscoveryServer) Default() {
-	discoveryserverlog.Info("default", "name", r.Name)
-}
-
-//+kubebuilder:webhook:path=/validate-robot-roboscale-io-v1alpha1-discoveryserver,mutating=false,failurePolicy=fail,sideEffects=None,groups=robot.roboscale.io,resources=discoveryservers,verbs=create;update,versions=v1alpha1,name=vdiscoveryserver.kb.io,admissionReviewVersions=v1
-
-var _ webhook.Validator = &DiscoveryServer{}
-
-// ValidateCreate implements webhook.Validator so a webhook will be registered for the type
-func (r *DiscoveryServer) ValidateCreate() error {
-	discoveryserverlog.Info("validate create", "name", r.Name)
-
-	err := r.checkContainerInfo()
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ValidateUpdate implements webhook.Validator so a webhook will be registered for the type
-func (r *DiscoveryServer) ValidateUpdate(old runtime.Object) error {
-	discoveryserverlog.Info("validate update", "name", r.Name)
-
-	err := r.checkContainerInfo()
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ValidateDelete implements webhook.Validator so a webhook will be registered for the type
-func (r *DiscoveryServer) ValidateDelete() error {
-	discoveryserverlog.Info("validate delete", "name", r.Name)
-	return nil
-}
-
-func (r *DiscoveryServer) checkContainerInfo() error {
-
-	if r.Spec.Type == DiscoveryServerInstanceTypeServer {
-		if r.Spec.Image == "" {
-			return errors.New("image name should be set if the type is server")
-		}
-
-		if len(r.Spec.Args) == 0 {
-			return errors.New("discovery server entrypoint should be set if the type is server")
-		}
-
-		if !reflect.DeepEqual(r.Spec.Reference, corev1.ObjectReference{}) {
-			return errors.New("reference should be nil if the type is server")
-		}
-	}
-
-	return nil
 }

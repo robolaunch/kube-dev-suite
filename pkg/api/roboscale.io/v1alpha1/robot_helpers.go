@@ -93,31 +93,6 @@ func (robot *Robot) GetWorkspaceByName(name string) (Workspace, error) {
 }
 
 // ********************************
-// DiscoveryServer helpers
-// *******************************
-
-func (discoveryServer *DiscoveryServer) GetDiscoveryServerPodMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      discoveryServer.Name,
-		Namespace: discoveryServer.Namespace,
-	}
-}
-
-func (discoveryServer *DiscoveryServer) GetDiscoveryServerServiceMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      discoveryServer.Name + "-" + discoveryServer.Spec.Subdomain,
-		Namespace: discoveryServer.Namespace,
-	}
-}
-
-func (discoveryServer *DiscoveryServer) GetDiscoveryServerConfigMapMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      discoveryServer.Name,
-		Namespace: discoveryServer.Namespace,
-	}
-}
-
-// ********************************
 // ROSBridge helpers
 // *******************************
 
