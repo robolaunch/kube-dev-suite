@@ -39,7 +39,6 @@ import (
 
 	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
 	buildManager "github.com/robolaunch/robot-operator/pkg/controllers/build_manager"
-	launchManager "github.com/robolaunch/robot-operator/pkg/controllers/launch_manager"
 	metrics_collector "github.com/robolaunch/robot-operator/pkg/controllers/metrics_collector"
 	robot "github.com/robolaunch/robot-operator/pkg/controllers/robot"
 	discoveryServer "github.com/robolaunch/robot-operator/pkg/controllers/robot/discovery_server"
@@ -160,18 +159,6 @@ func main() {
 	}
 	if err = (&robotv1alpha1.BuildManager{}).SetupWebhookWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create webhook", "webhook", "BuildManager")
-		os.Exit(1)
-	}
-	if err = (&launchManager.LaunchManagerReconciler{
-		Client:        mgr.GetClient(),
-		Scheme:        mgr.GetScheme(),
-		DynamicClient: dynamicClient,
-	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "LaunchManager")
-		os.Exit(1)
-	}
-	if err = (&robotv1alpha1.LaunchManager{}).SetupWebhookWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create webhook", "webhook", "LaunchManager")
 		os.Exit(1)
 	}
 	if err = (&robotDevSuite.RobotDevSuiteReconciler{
