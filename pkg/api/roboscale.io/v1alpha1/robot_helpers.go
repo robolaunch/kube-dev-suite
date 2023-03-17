@@ -53,13 +53,6 @@ func (robot *Robot) GetLoaderJobMetadata() *types.NamespacedName {
 	}
 }
 
-func (robot *Robot) GetROSBridgeMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      robot.Name + internal.ROS_BRIDGE_POSTFIX,
-		Namespace: robot.Namespace,
-	}
-}
-
 func (robot *Robot) GetRobotDevSuiteMetadata() *types.NamespacedName {
 	return &types.NamespacedName{
 		Name:      robot.Name + internal.ROBOT_DEV_SUITE_POSTFIX,
@@ -83,29 +76,4 @@ func (robot *Robot) GetWorkspaceByName(name string) (Workspace, error) {
 	}
 
 	return Workspace{}, errors.New("workspace not found")
-}
-
-// ********************************
-// ROSBridge helpers
-// *******************************
-
-func (rosbridge *ROSBridge) GetBridgePodMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      rosbridge.Name,
-		Namespace: rosbridge.Namespace,
-	}
-}
-
-func (rosbridge *ROSBridge) GetBridgeServiceMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      rosbridge.Name,
-		Namespace: rosbridge.Namespace,
-	}
-}
-
-func (rosbridge *ROSBridge) GetOwnerMetadata() *types.NamespacedName {
-	return &types.NamespacedName{
-		Name:      rosbridge.OwnerReferences[0].Name,
-		Namespace: rosbridge.Namespace,
-	}
 }

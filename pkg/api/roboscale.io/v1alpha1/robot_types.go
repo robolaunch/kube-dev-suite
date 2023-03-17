@@ -7,7 +7,6 @@ import (
 
 func init() {
 	SchemeBuilder.Register(&Robot{}, &RobotList{})
-	SchemeBuilder.Register(&ROSBridge{}, &ROSBridgeList{})
 	SchemeBuilder.Register(&RobotArtifact{}, &RobotArtifactList{})
 }
 
@@ -33,28 +32,6 @@ type RobotList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []Robot `json:"items"`
-}
-
-//+genclient
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-
-// ROSBridge is the Schema for the rosbridges API
-type ROSBridge struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   ROSBridgeSpec   `json:"spec,omitempty"`
-	Status ROSBridgeStatus `json:"status,omitempty"`
-}
-
-//+kubebuilder:object:root=true
-
-// ROSBridgeList contains a list of ROSBridge
-type ROSBridgeList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []ROSBridge `json:"items"`
 }
 
 //+kubebuilder:object:root=true
@@ -157,8 +134,6 @@ type RobotSpec struct {
 	RMWImplementation RMWImplementation `json:"rmwImplementation"`
 	// Resource limitations of robot containers.
 	Storage Storage `json:"storage,omitempty"`
-	// ROS bridge template
-	ROSBridgeTemplate ROSBridgeSpec `json:"rosBridgeTemplate,omitempty"`
 	// Workspace manager template
 	WorkspaceManagerTemplate WorkspaceManagerSpec `json:"workspaceManagerTemplate,omitempty"`
 	// Build manager template for initial configuration
@@ -184,11 +159,6 @@ type VolumeStatuses struct {
 	Usr       VolumeStatus `json:"usr,omitempty"`
 	Opt       VolumeStatus `json:"opt,omitempty"`
 	Workspace VolumeStatus `json:"workspace,omitempty"`
-}
-
-type ROSBridgeInstanceStatus struct {
-	Created bool            `json:"created,omitempty"`
-	Status  ROSBridgeStatus `json:"status,omitempty"`
 }
 
 type RobotDevSuiteInstanceStatus struct {
@@ -239,8 +209,6 @@ type RobotStatus struct {
 	NodeName string `json:"nodeName,omitempty"`
 	// Volume status
 	VolumeStatuses VolumeStatuses `json:"volumeStatuses,omitempty"`
-	// ROS bridge instance status
-	ROSBridgeStatus ROSBridgeInstanceStatus `json:"rosBridgeStatus,omitempty"`
 	// Robot development suite instance status
 	RobotDevSuiteStatus RobotDevSuiteInstanceStatus `json:"robotDevSuiteStatus,omitempty"`
 	// Loader job status that configures environment
@@ -255,38 +223,6 @@ type RobotStatus struct {
 	AttachedBuildObject AttachedBuildObject `json:"attachedBuildObject,omitempty"`
 	// Attached dev object information
 	AttachedDevObjects []AttachedDevObject `json:"attachedDevObjects,omitempty"`
-}
-
-// ********************************
-// ROSBridge types
-// ********************************
-
-type BridgeDistro struct {
-	Enabled bool      `json:"enabled,omitempty"`
-	Distro  ROSDistro `json:"distro,omitempty"`
-}
-
-// ROSBridgeSpec defines the desired state of ROSBridge
-type ROSBridgeSpec struct {
-	ROS   BridgeDistro `json:"ros,omitempty"`
-	ROS2  BridgeDistro `json:"ros2,omitempty"`
-	Image string       `json:"image,omitempty"`
-}
-
-type BridgePodStatus struct {
-	Created bool            `json:"created,omitempty"`
-	Phase   corev1.PodPhase `json:"phase,omitempty"`
-}
-
-type BridgeServiceStatus struct {
-	Created bool `json:"created,omitempty"`
-}
-
-// ROSBridgeStatus defines the observed state of ROSBridge
-type ROSBridgeStatus struct {
-	Phase         BridgePhase         `json:"phase,omitempty"`
-	PodStatus     BridgePodStatus     `json:"podStatus,omitempty"`
-	ServiceStatus BridgeServiceStatus `json:"serviceStatus,omitempty"`
 }
 
 // ********************************
