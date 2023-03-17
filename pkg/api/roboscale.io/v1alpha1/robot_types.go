@@ -188,8 +188,6 @@ type RobotSpec struct {
 	WorkspaceManagerTemplate WorkspaceManagerSpec `json:"workspaceManagerTemplate,omitempty"`
 	// Build manager template for initial configuration
 	BuildManagerTemplate BuildManagerSpec `json:"buildManagerTemplate,omitempty"`
-	// Launch manager template for initial configuration
-	LaunchManagerTemplates []LaunchManagerSpec `json:"launchManagerTemplates,omitempty"`
 	// Robot development suite template
 	RobotDevSuiteTemplate RobotDevSuiteSpec `json:"robotDevSuiteTemplate,omitempty"`
 	// Development enabled
@@ -256,11 +254,6 @@ type AttachedBuildObject struct {
 	Status    BuildManagerStatus     `json:"status,omitempty"`
 }
 
-type AttachedLaunchObject struct {
-	Reference corev1.ObjectReference `json:"reference,omitempty"`
-	Status    LaunchManagerStatus    `json:"status,omitempty"`
-}
-
 type AttachedDevObject struct {
 	Reference corev1.ObjectReference `json:"reference,omitempty"`
 	Status    RobotDevSuiteStatus    `json:"status,omitempty"`
@@ -292,8 +285,6 @@ type RobotStatus struct {
 	InitialLaunchManagerStatuses []ManagerStatus `json:"initialLaunchManagerStatuses,omitempty"`
 	// Attached build object information
 	AttachedBuildObject AttachedBuildObject `json:"attachedBuildObject,omitempty"`
-	// Attached launch object information
-	AttachedLaunchObjects []AttachedLaunchObject `json:"attachedLaunchObjects,omitempty"`
 	// Attached dev object information
 	AttachedDevObjects []AttachedDevObject `json:"attachedDevObjects,omitempty"`
 }

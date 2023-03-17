@@ -105,9 +105,6 @@ var _ = BeforeSuite(func() {
 	err = (&BuildManager{}).SetupWebhookWithManager(mgr)
 	Expect(err).NotTo(HaveOccurred())
 
-	err = (&LaunchManager{}).SetupWebhookWithManager(mgr)
-	Expect(err).NotTo(HaveOccurred())
-
 	err = (&RobotVDI{}).SetupWebhookWithManager(mgr)
 	Expect(err).NotTo(HaveOccurred())
 

@@ -24,7 +24,6 @@ import (
 func init() {
 	SchemeBuilder.Register(&WorkspaceManager{}, &WorkspaceManagerList{})
 	SchemeBuilder.Register(&BuildManager{}, &BuildManagerList{})
-	SchemeBuilder.Register(&LaunchManager{}, &LaunchManagerList{})
 }
 
 //+kubebuilder:object:root=true
@@ -68,28 +67,6 @@ type BuildManagerList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []BuildManager `json:"items"`
-}
-
-//+genclient
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-
-// LaunchManager is the Schema for the launchmanagers API
-type LaunchManager struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec   LaunchManagerSpec   `json:"spec,omitempty"`
-	Status LaunchManagerStatus `json:"status,omitempty"`
-}
-
-//+kubebuilder:object:root=true
-
-// LaunchManagerList contains a list of LaunchManager
-type LaunchManagerList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []LaunchManager `json:"items"`
 }
 
 // ********************************
@@ -198,98 +175,4 @@ type BuildManagerStatus struct {
 	Active                bool                  `json:"active,omitempty"`
 	ScriptConfigMapStatus ScriptConfigMapStatus `json:"scriptConfigMapStatus,omitempty"`
 	Steps                 []StepStatus          `json:"steps,omitempty"`
-}
-
-// ********************************
-// LaunchManager types
-// ********************************
-
-// Prelaunch command or script is applied just before the node is started.
-type Prelaunch struct {
-	// Bash command to run before ROS node execution.
-	// +kubebuilder:validation:Required
-	Command string `json:"command"`
-	// Script  string `json:"script,omitempty"`
-}
-
-// Launch description of a repository.
-type Launch struct {
-	// Cluster selector.
-	Selector map[string]string `json:"selector,omitempty"`
-	// Name of the workspace.
-	// +kubebuilder:validation:Required
-	Workspace string `json:"workspace"`
-	// Name of the repository.
-	// +kubebuilder:validation:Required
-	Repository string `json:"repository"`
-	// Name of the repository.
-	// +kubebuilder:validation:Required
-	Namespacing bool `json:"namespacing,omitempty"`
-	// Additional environment variables to set when launching ROS nodes.
-	Env []corev1.EnvVar `json:"env,omitempty"`
-	// Path to launchfile in repository. (eg. `linorobot/linorobot_gazebo/launch.py`)
-	// +kubebuilder:validation:Required
-	LaunchFilePath string `json:"launchFilePath"`
-	// Launch parameters.
-	Parameters map[string]string `json:"parameters,omitempty"`
-	// Command or script to run just before node's execution.
-	Prelaunch Prelaunch `json:"prelaunch,omitempty"`
-	// Launch container privilege.
-	Privileged bool `json:"privileged,omitempty"`
-	// Launch container resource limits.
-	Resources Resources `json:"resources,omitempty"`
-}
-
-// Run description.
-type Run struct {
-	// Cluster selector.
-	Selector map[string]string `json:"selector,omitempty"`
-	// Name of the workspace.
-	// +kubebuilder:validation:Required
-	Workspace string `json:"workspace"`
-	// Name of the repository.
-	// +kubebuilder:validation:Required
-	Namespacing bool `json:"namespacing,omitempty"`
-	// Additional environment variables to set when launching ROS nodes.
-	Env []corev1.EnvVar `json:"env,omitempty"`
-	// Package name in `ros2 run <package> <executable>`.
-	// +kubebuilder:validation:Required
-	Package string `json:"package"`
-	// Executable name in `ros2 run <package> <executable>`.
-	Executable string `json:"executable"`
-	// Launch parameters.
-	Parameters map[string]string `json:"parameters,omitempty"`
-	// Command or script to run just before node's execution.
-	Prelaunch Prelaunch `json:"prelaunch,omitempty"`
-	// Launch container privilege.
-	Privileged bool `json:"privileged,omitempty"`
-	// Launch container resource limits.
-	Resources Resources `json:"resources,omitempty"`
-}
-
-// LaunchManagerSpec defines the desired state of LaunchManager
-type LaunchManagerSpec struct {
-	// Display connection.
-	Display bool              `json:"display,omitempty"`
-	Launch  map[string]Launch `json:"launch,omitempty"`
-	Run     map[string]Run    `json:"run,omitempty"`
-}
-
-type LaunchStatus struct {
-	Active          bool                   `json:"active,omitempty"`
-	ContainerStatus corev1.ContainerStatus `json:"containerStatus,omitempty"`
-}
-
-type LaunchPodStatus struct {
-	Created      bool                    `json:"created,omitempty"`
-	Phase        corev1.PodPhase         `json:"phase,omitempty"`
-	IP           string                  `json:"ip,omitempty"`
-	LaunchStatus map[string]LaunchStatus `json:"launchStatus,omitempty"`
-}
-
-// LaunchManagerStatus defines the observed state of LaunchManager
-type LaunchManagerStatus struct {
-	Phase           LaunchManagerPhase `json:"phase,omitempty"`
-	Active          bool               `json:"active,omitempty"`
-	LaunchPodStatus LaunchPodStatus    `json:"launchPodStatus,omitempty"`
 }
