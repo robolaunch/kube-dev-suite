@@ -61,11 +61,6 @@ func (r *Robot) ValidateCreate() error {
 		return err
 	}
 
-	err = r.checkWorkspaces()
-	if err != nil {
-		return err
-	}
-
 	err = r.checkRobotDevSuite()
 	if err != nil {
 		return err
@@ -84,11 +79,6 @@ func (r *Robot) ValidateUpdate(old runtime.Object) error {
 	}
 
 	err = r.checkDistributions()
-	if err != nil {
-		return err
-	}
-
-	err = r.checkWorkspaces()
 	if err != nil {
 		return err
 	}
@@ -136,26 +126,6 @@ func (r *Robot) checkDistributions() error {
 
 	if len(r.Spec.Distributions) == 2 && (r.Spec.Distributions[0] == ROSDistroHumble || r.Spec.Distributions[1] == ROSDistroHumble) {
 		return errors.New("humble cannot be used in a multidistro environment")
-	}
-
-	return nil
-}
-
-func (r *Robot) checkWorkspaces() error {
-
-	for _, ws := range r.Spec.WorkspaceManagerTemplate.Workspaces {
-
-		distroExists := false
-		for _, distro := range r.Spec.Distributions {
-			if ws.Distro == distro {
-				distroExists = true
-				break
-			}
-		}
-
-		if !distroExists {
-			return errors.New("workspace " + ws.Name + " has unsupported distro defined in `spec.distributions`")
-		}
 	}
 
 	return nil

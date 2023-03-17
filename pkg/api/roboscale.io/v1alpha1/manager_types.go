@@ -97,8 +97,6 @@ type Workspace struct {
 	// Name of workspace. If a workspace's name is `my_ws`, it's absolute path is `/home/workspaces/my_ws`.
 	// +kubebuilder:validation:Required
 	Name string `json:"name"`
-	// +kubebuilder:validation:Required
-	Distro ROSDistro `json:"distro"`
 	// Repositories to clone inside workspace's `src` directory.
 	Repositories map[string]Repository `json:"repositories"`
 }
