@@ -7,7 +7,6 @@ import (
 
 func init() {
 	SchemeBuilder.Register(&Robot{}, &RobotList{})
-	SchemeBuilder.Register(&RobotArtifact{}, &RobotArtifactList{})
 }
 
 //+genclient
@@ -32,26 +31,6 @@ type RobotList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []Robot `json:"items"`
-}
-
-//+kubebuilder:object:root=true
-//+kubebuilder:subresource:status
-
-// RobotArtifact is the Schema for the robotartifacts API
-type RobotArtifact struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Template RobotSpec `json:"template,omitempty"`
-}
-
-//+kubebuilder:object:root=true
-
-// RobotArtifactList contains a list of RobotArtifact
-type RobotArtifactList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []RobotArtifact `json:"items"`
 }
 
 // ********************************
