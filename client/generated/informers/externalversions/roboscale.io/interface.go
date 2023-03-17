@@ -18,8 +18,8 @@ limitations under the License.
 package roboscale
 
 import (
-	internalinterfaces "github.com/robolaunch/robot-operator/client/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "github.com/robolaunch/robot-operator/client/generated/informers/externalversions/roboscale.io/v1alpha1"
+	internalinterfaces "github.com/robolaunch/kube-dev-suite/client/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/robolaunch/kube-dev-suite/client/generated/informers/externalversions/roboscale.io/v1alpha1"
 )
 
 // Interface provides access to each of this group's versions.

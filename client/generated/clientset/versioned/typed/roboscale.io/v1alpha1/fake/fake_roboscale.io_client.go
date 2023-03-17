@@ -18,7 +18,7 @@ limitations under the License.
 package fake
 
 import (
-	v1alpha1 "github.com/robolaunch/robot-operator/client/generated/clientset/versioned/typed/roboscale.io/v1alpha1"
+	v1alpha1 "github.com/robolaunch/kube-dev-suite/client/generated/clientset/versioned/typed/roboscale.io/v1alpha1"
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
 )

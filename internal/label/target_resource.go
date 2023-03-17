@@ -1,7 +1,7 @@
 package label
 
 import (
-	"github.com/robolaunch/robot-operator/internal"
+	"github.com/robolaunch/kube-dev-suite/internal"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 

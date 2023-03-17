@@ -1,4 +1,4 @@
-module github.com/robolaunch/robot-operator
+module github.com/robolaunch/kube-dev-suite
 
 go 1.20
 

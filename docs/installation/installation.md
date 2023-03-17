@@ -25,5 +25,5 @@ kubectl label <NODE> robolaunch.io/cloud-instance=cluster
 Deploy robot operator one-file YAML using the command below:
 
 ```bash
-kubectl apply -f https://github.com/robolaunch/robot-operator/releases/download/v0.1.1/robot_operator.yaml
+kubectl apply -f https://github.com/robolaunch/kube-dev-suite/releases/download/v0.1.1/robot_operator.yaml
 ```

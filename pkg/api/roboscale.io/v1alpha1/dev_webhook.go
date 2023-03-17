@@ -3,7 +3,7 @@ package v1alpha1
 import (
 	"errors"
 
-	"github.com/robolaunch/robot-operator/internal"
+	"github.com/robolaunch/kube-dev-suite/internal"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"

@@ -3,10 +3,10 @@ package workspace_manager
 import (
 	"context"
 
-	"github.com/robolaunch/robot-operator/internal"
-	robotErr "github.com/robolaunch/robot-operator/internal/error"
-	"github.com/robolaunch/robot-operator/internal/label"
-	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
+	"github.com/robolaunch/kube-dev-suite/internal"
+	robotErr "github.com/robolaunch/kube-dev-suite/internal/error"
+	"github.com/robolaunch/kube-dev-suite/internal/label"
+	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
 	batchv1 "k8s.io/api/batch/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"

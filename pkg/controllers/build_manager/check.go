@@ -3,9 +3,9 @@ package build_manager
 import (
 	"context"
 
-	"github.com/robolaunch/robot-operator/internal"
-	"github.com/robolaunch/robot-operator/internal/label"
-	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
+	"github.com/robolaunch/kube-dev-suite/internal"
+	"github.com/robolaunch/kube-dev-suite/internal/label"
+	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
 	batchv1 "k8s.io/api/batch/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"

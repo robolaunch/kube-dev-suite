@@ -2,13 +2,13 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://github.com/robolaunch/robot-operator/blob/main/LICENSE">
+    <a href="https://github.com/robolaunch/kube-dev-suite/blob/main/LICENSE">
       <img src="https://img.shields.io/github/license/robolaunch/robot-operator" alt="license">
     </a>
-    <a href="https://github.com/robolaunch/robot-operator/issues">
+    <a href="https://github.com/robolaunch/kube-dev-suite/issues">
       <img src="https://img.shields.io/github/issues/robolaunch/robot-operator" alt="issues">
     </a>
-    <a href="https://github.com/robolaunch/robot-operator/releases">
+    <a href="https://github.com/robolaunch/kube-dev-suite/releases">
       <img src="https://img.shields.io/github/v/release/robolaunch/robot-operator" alt="release">
     </a>
   </p>
@@ -16,14 +16,14 @@
 
 <div align="center">
   <p align="center">
-    <a href="https://github.com/robolaunch/robot-operator/releases">
+    <a href="https://github.com/robolaunch/kube-dev-suite/releases">
       <img src="https://img.shields.io/github/go-mod/go-version/robolaunch/robot-operator" alt="release">
     </a>
-    <a href="https://pkg.go.dev/github.com/robolaunch/robot-operator">
-      <img src="https://pkg.go.dev/badge/github.com/robolaunch/robot-operator.svg" alt="Go Reference">
+    <a href="https://pkg.go.dev/github.com/robolaunch/kube-dev-suite">
+      <img src="https://pkg.go.dev/badge/github.com/robolaunch/kube-dev-suite.svg" alt="Go Reference">
     </a>
-    <a href="https://goreportcard.com/report/github.com/robolaunch/robot-operator">
-      <img src="https://goreportcard.com/badge/github.com/robolaunch/robot-operator" alt="Go Reference">
+    <a href="https://goreportcard.com/report/github.com/robolaunch/kube-dev-suite">
+      <img src="https://goreportcard.com/badge/github.com/robolaunch/kube-dev-suite" alt="Go Reference">
     </a>
   </p>
 </div>
@@ -33,8 +33,8 @@
     <a href="https://hub.docker.com/u/robolaunchio/robot-controller-manager">
       <img src="https://img.shields.io/docker/pulls/robolaunchio/robot-controller-manager" alt="pulls">
     </a>
-    <a href="https://github.com/robolaunch/robot-operator/actions">
-      <img src="https://github.com/robolaunch/robot-operator/actions/workflows/docker-build-for-push.yml/badge.svg" alt="build">
+    <a href="https://github.com/robolaunch/kube-dev-suite/actions">
+      <img src="https://github.com/robolaunch/kube-dev-suite/actions/workflows/docker-build-for-push.yml/badge.svg" alt="build">
     </a>
   </p>
 </div>
@@ -78,7 +78,7 @@ The main idea of this project is to manage robots as Kubernetes custom resources
   - Robot-to-Robot Discovery
   - Node-to-Node Discovery
 
-Refer [robolaunch.io](robolaunch.io) and [project wiki](https://github.com/robolaunch/robot-operator/wiki) for more architectural details and documentations.
+Refer [robolaunch.io](robolaunch.io) and [project wiki](https://github.com/robolaunch/kube-dev-suite/wiki) for more architectural details and documentations.
 
 ## Quick Start
 

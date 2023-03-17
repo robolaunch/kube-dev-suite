@@ -3,10 +3,10 @@ package robot
 import (
 	"context"
 
-	robotErr "github.com/robolaunch/robot-operator/internal/error"
-	label "github.com/robolaunch/robot-operator/internal/label"
-	nodePkg "github.com/robolaunch/robot-operator/internal/node"
-	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
+	robotErr "github.com/robolaunch/kube-dev-suite/internal/error"
+	label "github.com/robolaunch/kube-dev-suite/internal/label"
+	nodePkg "github.com/robolaunch/kube-dev-suite/internal/node"
+	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/selection"

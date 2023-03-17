@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"net/http"
 
-	roboscalev1alpha1 "github.com/robolaunch/robot-operator/client/generated/clientset/versioned/typed/roboscale.io/v1alpha1"
+	roboscalev1alpha1 "github.com/robolaunch/kube-dev-suite/client/generated/clientset/versioned/typed/roboscale.io/v1alpha1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"

@@ -32,13 +32,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
-	buildManager "github.com/robolaunch/robot-operator/pkg/controllers/build_manager"
-	robot "github.com/robolaunch/robot-operator/pkg/controllers/robot"
-	robotDevSuite "github.com/robolaunch/robot-operator/pkg/controllers/robot_dev_suite"
-	robotIDE "github.com/robolaunch/robot-operator/pkg/controllers/robot_dev_suite/robot_ide"
-	robotVDI "github.com/robolaunch/robot-operator/pkg/controllers/robot_dev_suite/robot_vdi"
-	workspaceManager "github.com/robolaunch/robot-operator/pkg/controllers/workspace_manager"
+	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
+	buildManager "github.com/robolaunch/kube-dev-suite/pkg/controllers/build_manager"
+	robot "github.com/robolaunch/kube-dev-suite/pkg/controllers/robot"
+	robotDevSuite "github.com/robolaunch/kube-dev-suite/pkg/controllers/robot_dev_suite"
+	robotIDE "github.com/robolaunch/kube-dev-suite/pkg/controllers/robot_dev_suite/robot_ide"
+	robotVDI "github.com/robolaunch/kube-dev-suite/pkg/controllers/robot_dev_suite/robot_vdi"
+	workspaceManager "github.com/robolaunch/kube-dev-suite/pkg/controllers/workspace_manager"
 	//+kubebuilder:scaffold:imports
 )
 

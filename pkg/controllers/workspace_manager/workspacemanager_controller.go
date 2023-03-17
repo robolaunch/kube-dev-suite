@@ -21,7 +21,7 @@ import (
 	goErr "errors"
 	"time"
 
-	robotErr "github.com/robolaunch/robot-operator/internal/error"
+	robotErr "github.com/robolaunch/kube-dev-suite/internal/error"
 	batchv1 "k8s.io/api/batch/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/runtime"
@@ -30,7 +30,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
 	"github.com/go-logr/logr"
-	robotv1alpha1 "github.com/robolaunch/robot-operator/pkg/api/roboscale.io/v1alpha1"
+	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
 )
 
 // WorkspaceManagerReconciler reconciles a WorkspaceManager object

@@ -22,9 +22,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "github.com/robolaunch/robot-operator/client/generated/clientset/versioned"
-	internalinterfaces "github.com/robolaunch/robot-operator/client/generated/informers/externalversions/internalinterfaces"
-	roboscaleio "github.com/robolaunch/robot-operator/client/generated/informers/externalversions/roboscale.io"
+	versioned "github.com/robolaunch/kube-dev-suite/client/generated/clientset/versioned"
+	internalinterfaces "github.com/robolaunch/kube-dev-suite/client/generated/informers/externalversions/internalinterfaces"
+	roboscaleio "github.com/robolaunch/kube-dev-suite/client/generated/informers/externalversions/roboscale.io"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
