@@ -108,9 +108,6 @@ type RobotSpec struct {
 	// +kubebuilder:validation:MinItems=1
 	// +kubebuilder:validation:MaxItems=2
 	Distributions []ROSDistro `json:"distributions"`
-	// +kubebuilder:validation:Required
-	// +kubebuilder:default=rmw_fastrtps_cpp
-	RMWImplementation RMWImplementation `json:"rmwImplementation"`
 	// Resource limitations of robot containers.
 	Storage Storage `json:"storage,omitempty"`
 	// Workspace manager template
