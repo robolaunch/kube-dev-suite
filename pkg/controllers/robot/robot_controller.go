@@ -351,11 +351,6 @@ func (r *RobotReconciler) reconcileCheckResources(ctx context.Context, instance 
 		return err
 	}
 
-	err = r.reconcileCheckAttachedLaunchManager(ctx, instance)
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -373,10 +368,6 @@ func (r *RobotReconciler) SetupWithManager(mgr ctrl.Manager) error {
 			handler.EnqueueRequestsFromMapFunc(r.watchAttachedBuildManagers),
 		).
 		Watches(
-			&source.Kind{Type: &robotv1alpha1.LaunchManager{}},
-			handler.EnqueueRequestsFromMapFunc(r.watchAttachedLaunchManagers),
-		).
-		Watches(
 			&source.Kind{Type: &robotv1alpha1.RobotDevSuite{}},
 			handler.EnqueueRequestsFromMapFunc(r.watchAttachedRobotDevSuites),
 		).
@@ -386,29 +377,6 @@ func (r *RobotReconciler) SetupWithManager(mgr ctrl.Manager) error {
 func (r *RobotReconciler) watchAttachedBuildManagers(o client.Object) []reconcile.Request {
 
 	obj := o.(*robotv1alpha1.BuildManager)
-
-	robot := &robotv1alpha1.Robot{}
-	err := r.Get(context.TODO(), types.NamespacedName{
-		Name:      label.GetTargetRobot(obj),
-		Namespace: obj.Namespace,
-	}, robot)
-	if err != nil {
-		return []reconcile.Request{}
-	}
-
-	return []reconcile.Request{
-		{
-			NamespacedName: types.NamespacedName{
-				Name:      robot.Name,
-				Namespace: robot.Namespace,
-			},
-		},
-	}
-}
-
-func (r *RobotReconciler) watchAttachedLaunchManagers(o client.Object) []reconcile.Request {
-
-	obj := o.(*robotv1alpha1.LaunchManager)
 
 	robot := &robotv1alpha1.Robot{}
 	err := r.Get(context.TODO(), types.NamespacedName{

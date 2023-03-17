@@ -3,7 +3,6 @@ package robot
 import (
 	"context"
 	"reflect"
-	"strconv"
 
 	"github.com/robolaunch/robot-operator/internal/node"
 	"github.com/robolaunch/robot-operator/internal/resources"
@@ -159,50 +158,6 @@ func (r *RobotReconciler) createBuildManager(ctx context.Context, instance *robo
 
 		instance.Status.InitialBuildManagerStatus.Created = true
 		instance.Status.InitialBuildManagerStatus.Name = instance.Name + "-build"
-	}
-
-	return nil
-}
-
-func (r *RobotReconciler) createLaunchManager(ctx context.Context, instance *robotv1alpha1.Robot, lmNamespacedName *types.NamespacedName, key int) error {
-
-	launchManager := resources.GetLaunchManager(instance, lmNamespacedName, key)
-
-	err := ctrl.SetControllerReference(instance, launchManager, r.Scheme)
-	if err != nil {
-		return err
-	}
-
-	err = r.Create(ctx, launchManager)
-	if err != nil && errors.IsAlreadyExists(err) {
-		return nil
-	} else if err != nil {
-		return err
-	}
-
-	logger.Info("STATUS: Launch manager " + launchManager.Name + " is created.")
-	return nil
-}
-
-func (r *RobotReconciler) createLaunchManagers(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	if len(instance.Status.InitialLaunchManagerStatuses) == 0 {
-		for key := range instance.Spec.LaunchManagerTemplates {
-			instance.Status.InitialLaunchManagerStatuses = append(instance.Status.InitialLaunchManagerStatuses, robotv1alpha1.ManagerStatus{
-				Name: instance.Name + "-launch-" + strconv.Itoa(key),
-			})
-		}
-
-		for key, lm := range instance.Status.InitialLaunchManagerStatuses {
-			if !lm.Created {
-				err := r.createLaunchManager(ctx, instance, &types.NamespacedName{Namespace: instance.Namespace, Name: lm.Name}, key)
-				if err != nil {
-					return err
-				}
-				lm.Created = true
-				instance.Status.InitialLaunchManagerStatuses[key] = lm
-			}
-		}
 	}
 
 	return nil

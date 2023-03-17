@@ -114,31 +114,6 @@ func (r *BuildManagerReconciler) reconcileCheckOtherAttachedResources(ctx contex
 			}
 		}
 
-		launchManagerList := robotv1alpha1.LaunchManagerList{}
-		err = r.List(ctx, &launchManagerList, &client.ListOptions{Namespace: instance.Namespace, LabelSelector: robotSelector})
-		if err != nil {
-			return err
-		}
-
-		for _, lm := range launchManagerList.Items {
-
-			if lm.Status.Active {
-				return &robotErr.RobotResourcesHasNotBeenReleasedError{
-					ResourceKind:      instance.Kind,
-					ResourceName:      instance.Name,
-					ResourceNamespace: instance.Namespace,
-				}
-			}
-
-			if lm.Status.Phase != robotv1alpha1.LaunchManagerPhaseInactive {
-				return &robotErr.RobotResourcesHasNotBeenReleasedError{
-					ResourceKind:      instance.Kind,
-					ResourceName:      instance.Name,
-					ResourceNamespace: instance.Namespace,
-				}
-			}
-		}
-
 		buildManagerList := robotv1alpha1.BuildManagerList{}
 		err = r.List(ctx, &buildManagerList, &client.ListOptions{Namespace: instance.Namespace, LabelSelector: robotSelector})
 		if err != nil {

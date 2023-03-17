@@ -19,11 +19,6 @@ func (r *RobotReconciler) reconcileHandleAttachments(ctx context.Context, instan
 		return err
 	}
 
-	err = r.createLaunchManagers(ctx, instance)
-	if err != nil {
-		return err
-	}
-
 	switch instance.Spec.Development {
 	case true:
 
@@ -48,21 +43,9 @@ func (r *RobotReconciler) reconcileHandleAttachments(ctx context.Context, instan
 					return err
 				}
 
-				switch instance.Status.AttachedBuildObject.Status.Phase {
-				case robotv1alpha1.BuildManagerReady:
-
-					// select attached launch object
-					err := r.reconcileAttachLaunchObject(ctx, instance)
-					if err != nil {
-						return err
-					}
-
-				}
-
 			default:
 
 				instance.Status.AttachedBuildObject = robotv1alpha1.AttachedBuildObject{}
-				instance.Status.AttachedLaunchObjects = []robotv1alpha1.AttachedLaunchObject{}
 
 			}
 
@@ -117,7 +100,6 @@ func (r *RobotReconciler) reconcileAttachBuildObject(ctx context.Context, instan
 	selectedBuildManager := buildManagerList.Items[0]
 
 	if instance.Status.AttachedBuildObject.Reference.Name != selectedBuildManager.Name {
-		instance.Status.AttachedLaunchObjects = []robotv1alpha1.AttachedLaunchObject{}
 		instance.Status.AttachedBuildObject.Status = robotv1alpha1.BuildManagerStatus{}
 	}
 
@@ -133,57 +115,10 @@ func (r *RobotReconciler) reconcileAttachBuildObject(ctx context.Context, instan
 	return nil
 }
 
-func (r *RobotReconciler) reconcileAttachLaunchObject(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	// Get attached launch objects for this robot
-	requirements := []labels.Requirement{}
-	newReq, err := labels.NewRequirement(internal.TARGET_ROBOT_LABEL_KEY, selection.In, []string{instance.Name})
-	if err != nil {
-		return err
-	}
-	requirements = append(requirements, *newReq)
-
-	robotSelector := labels.NewSelector().Add(requirements...)
-
-	launchManagerList := robotv1alpha1.LaunchManagerList{}
-	err = r.List(ctx, &launchManagerList, &client.ListOptions{Namespace: instance.Namespace, LabelSelector: robotSelector})
-	if err != nil {
-		return err
-	}
-
-	if len(launchManagerList.Items) == 0 {
-		instance.Status.AttachedLaunchObjects = []robotv1alpha1.AttachedLaunchObject{}
-		return nil
-	}
-
-	// Sort attached launch objects for this robot according to their creation timestamps
-	sort.SliceStable(launchManagerList.Items[:], func(i, j int) bool {
-		return launchManagerList.Items[i].CreationTimestamp.String() < launchManagerList.Items[j].CreationTimestamp.String()
-	})
-
-	instance.Status.AttachedLaunchObjects = []robotv1alpha1.AttachedLaunchObject{}
-
-	for _, lm := range launchManagerList.Items {
-		instance.Status.AttachedLaunchObjects = append(instance.Status.AttachedLaunchObjects, robotv1alpha1.AttachedLaunchObject{
-			Reference: corev1.ObjectReference{
-				Kind:            lm.Kind,
-				Namespace:       lm.Namespace,
-				Name:            lm.Name,
-				UID:             lm.UID,
-				APIVersion:      lm.APIVersion,
-				ResourceVersion: lm.ResourceVersion,
-			},
-		})
-	}
-
-	return nil
-}
-
 func (r *RobotReconciler) reconcileAttachDevObject(ctx context.Context, instance *robotv1alpha1.Robot) error {
 
 	// Detach build and launch objects from robot
 	instance.Status.AttachedBuildObject = robotv1alpha1.AttachedBuildObject{}
-	instance.Status.AttachedLaunchObjects = []robotv1alpha1.AttachedLaunchObject{}
 
 	// Get attached dev objects for this robot
 	requirements := []labels.Requirement{}

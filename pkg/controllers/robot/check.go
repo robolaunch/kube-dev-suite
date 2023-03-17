@@ -238,23 +238,3 @@ func (r *RobotReconciler) reconcileCheckAttachedBuildManager(ctx context.Context
 
 	return nil
 }
-
-func (r *RobotReconciler) reconcileCheckAttachedLaunchManager(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	for k, lm := range instance.Status.AttachedLaunchObjects {
-		launchManager := &robotv1alpha1.LaunchManager{}
-		err := r.Get(ctx, types.NamespacedName{Namespace: lm.Reference.Namespace, Name: lm.Reference.Name}, launchManager)
-		if err != nil && errors.IsNotFound(err) {
-			// TODO: Empty the reference fields
-			return err
-		} else if err != nil {
-			return err
-		} else {
-			lm.Status = launchManager.Status
-		}
-
-		instance.Status.AttachedLaunchObjects[k] = lm
-	}
-
-	return nil
-}
