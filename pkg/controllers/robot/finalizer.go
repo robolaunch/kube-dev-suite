@@ -37,11 +37,6 @@ func (r *RobotReconciler) reconcileCheckDeletion(ctx context.Context, instance *
 				return err
 			}
 
-			err = r.waitForDiscoveryServerDeletion(ctx, instance)
-			if err != nil {
-				return err
-			}
-
 			err = r.waitForLoaderJobDeletion(ctx, instance)
 			if err != nil {
 				return err
@@ -131,61 +126,6 @@ func (r *RobotReconciler) waitForROSBridgeDeletion(ctx context.Context, instance
 					if event.Type == watch.Deleted {
 						logger.Info("FINALIZER: ROS bridge is deleted gracefully.")
 						bridgeDeleted = true
-					}
-				}
-			} else {
-				break
-			}
-
-		}
-	}
-	return nil
-}
-
-func (r *RobotReconciler) waitForDiscoveryServerDeletion(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	discoveryServerQuery := &robotv1alpha1.DiscoveryServer{}
-	err := r.Get(ctx, *instance.GetDiscoveryServerMetadata(), discoveryServerQuery)
-	if err != nil && errors.IsNotFound(err) {
-		return nil
-	} else if err != nil {
-		return err
-	} else {
-		logger.Info("FINALIZER: Discovery server is being deleted.")
-		err := r.Delete(ctx, discoveryServerQuery)
-		if err != nil {
-			return err
-		}
-
-		instance.Status.Phase = robotv1alpha1.RobotPhaseDeletingDiscoveryServer
-		err = r.reconcileUpdateInstanceStatus(ctx, instance)
-		if err != nil {
-			return err
-		}
-
-		resourceInterface := r.DynamicClient.Resource(schema.GroupVersionResource{
-			Group:    discoveryServerQuery.GroupVersionKind().Group,
-			Version:  discoveryServerQuery.GroupVersionKind().Version,
-			Resource: "discoveryservers",
-		})
-		dsWatcher, err := resourceInterface.Watch(ctx, metav1.ListOptions{
-			FieldSelector: "metadata.name=" + instance.GetDiscoveryServerMetadata().Name,
-		})
-		if err != nil {
-			return err
-		}
-
-		defer dsWatcher.Stop()
-
-		dsDeleted := false
-		for {
-			if !dsDeleted {
-				select {
-				case event := <-dsWatcher.ResultChan():
-
-					if event.Type == watch.Deleted {
-						logger.Info("FINALIZER: Discovery server is deleted gracefully.")
-						dsDeleted = true
 					}
 				}
 			} else {

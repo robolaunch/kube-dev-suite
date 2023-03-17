@@ -71,31 +71,6 @@ func (r *RobotReconciler) reconcileCheckPVCs(ctx context.Context, instance *robo
 	return nil
 }
 
-func (r *RobotReconciler) reconcileCheckDiscoveryServer(ctx context.Context, instance *robotv1alpha1.Robot) error {
-
-	discoverServerQuery := &robotv1alpha1.DiscoveryServer{}
-	err := r.Get(ctx, *instance.GetDiscoveryServerMetadata(), discoverServerQuery)
-	if err != nil && errors.IsNotFound(err) {
-		instance.Status.DiscoveryServerStatus = robotv1alpha1.DiscoveryServerInstanceStatus{}
-	} else if err != nil {
-		return err
-	} else {
-
-		if !reflect.DeepEqual(instance.Spec.DiscoveryServerTemplate, discoverServerQuery.Spec) {
-			discoverServerQuery.Spec = instance.Spec.DiscoveryServerTemplate
-			err = r.Update(ctx, discoverServerQuery)
-			if err != nil {
-				return err
-			}
-		}
-
-		instance.Status.DiscoveryServerStatus.Created = true
-		instance.Status.DiscoveryServerStatus.Status = discoverServerQuery.Status
-	}
-
-	return nil
-}
-
 func (r *RobotReconciler) reconcileCheckLoaderJob(ctx context.Context, instance *robotv1alpha1.Robot) error {
 
 	if instance.Status.Phase != robotv1alpha1.RobotPhaseEnvironmentReady {

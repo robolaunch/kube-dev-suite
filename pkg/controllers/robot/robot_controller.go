@@ -105,81 +105,20 @@ func (r *RobotReconciler) reconcileCheckStatus(ctx context.Context, instance *ro
 		instance.Status.VolumeStatuses.Workspace.Created {
 	case true:
 
-		switch instance.Status.DiscoveryServerStatus.Created {
+		switch instance.Status.LoaderJobStatus.Created {
 		case true:
 
-			switch instance.Status.DiscoveryServerStatus.Status.Phase {
-			case robotv1alpha1.DiscoveryServerPhaseReady:
+			switch instance.Status.LoaderJobStatus.Phase {
+			case robotv1alpha1.JobSucceeded:
 
-				switch instance.Status.LoaderJobStatus.Created {
+				switch instance.Spec.ROSBridgeTemplate.ROS.Enabled || instance.Spec.ROSBridgeTemplate.ROS2.Enabled {
 				case true:
 
-					switch instance.Status.LoaderJobStatus.Phase {
-					case robotv1alpha1.JobSucceeded:
+					switch instance.Status.ROSBridgeStatus.Created {
+					case true:
 
-						switch instance.Spec.ROSBridgeTemplate.ROS.Enabled || instance.Spec.ROSBridgeTemplate.ROS2.Enabled {
-						case true:
-
-							switch instance.Status.ROSBridgeStatus.Created {
-							case true:
-
-								switch instance.Status.ROSBridgeStatus.Status.Phase {
-								case robotv1alpha1.BridgePhaseReady:
-
-									switch instance.Spec.RobotDevSuiteTemplate.IDEEnabled || instance.Spec.RobotDevSuiteTemplate.VDIEnabled {
-									case true:
-
-										switch instance.Status.RobotDevSuiteStatus.Created {
-										case true:
-
-											switch instance.Status.RobotDevSuiteStatus.Status.Phase {
-											case robotv1alpha1.RobotDevSuitePhaseRunning:
-
-												instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
-
-												err := r.reconcileHandleAttachments(ctx, instance)
-												if err != nil {
-													return err
-												}
-
-											}
-
-										case false:
-
-											instance.Status.Phase = robotv1alpha1.RobotPhaseCreatingDevelopmentSuite
-											err := r.createRobotDevSuite(ctx, instance, instance.GetRobotDevSuiteMetadata())
-											if err != nil {
-												return err
-											}
-											instance.Status.RobotDevSuiteStatus.Created = true
-
-										}
-
-									case false:
-
-										instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
-
-										err := r.reconcileHandleAttachments(ctx, instance)
-										if err != nil {
-											return err
-										}
-
-									}
-
-								}
-
-							case false:
-
-								instance.Status.Phase = robotv1alpha1.RobotPhaseCreatingBridge
-								err := r.createROSBridge(ctx, instance, instance.GetROSBridgeMetadata())
-								if err != nil {
-									return err
-								}
-								instance.Status.ROSBridgeStatus.Created = true
-
-							}
-
-						case false:
+						switch instance.Status.ROSBridgeStatus.Status.Phase {
+						case robotv1alpha1.BridgePhaseReady:
 
 							switch instance.Spec.RobotDevSuiteTemplate.IDEEnabled || instance.Spec.RobotDevSuiteTemplate.VDIEnabled {
 							case true:
@@ -221,49 +160,91 @@ func (r *RobotReconciler) reconcileCheckStatus(ctx context.Context, instance *ro
 
 							}
 
-						case false:
-
-							instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
-
-							err := r.reconcileHandleAttachments(ctx, instance)
-							if err != nil {
-								return err
-							}
-
 						}
 
-					case robotv1alpha1.JobActive:
+					case false:
 
-						instance.Status.Phase = robotv1alpha1.RobotPhaseConfiguringEnvironment
-
-					case robotv1alpha1.JobFailed:
-
-						// TODO: add reason
-						instance.Status.Phase = robotv1alpha1.RobotPhaseFailed
+						instance.Status.Phase = robotv1alpha1.RobotPhaseCreatingBridge
+						err := r.createROSBridge(ctx, instance, instance.GetROSBridgeMetadata())
+						if err != nil {
+							return err
+						}
+						instance.Status.ROSBridgeStatus.Created = true
 
 					}
 
 				case false:
 
-					instance.Status.Phase = robotv1alpha1.RobotPhaseConfiguringEnvironment
-					err := r.createJob(ctx, instance, instance.GetLoaderJobMetadata())
+					switch instance.Spec.RobotDevSuiteTemplate.IDEEnabled || instance.Spec.RobotDevSuiteTemplate.VDIEnabled {
+					case true:
+
+						switch instance.Status.RobotDevSuiteStatus.Created {
+						case true:
+
+							switch instance.Status.RobotDevSuiteStatus.Status.Phase {
+							case robotv1alpha1.RobotDevSuitePhaseRunning:
+
+								instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
+
+								err := r.reconcileHandleAttachments(ctx, instance)
+								if err != nil {
+									return err
+								}
+
+							}
+
+						case false:
+
+							instance.Status.Phase = robotv1alpha1.RobotPhaseCreatingDevelopmentSuite
+							err := r.createRobotDevSuite(ctx, instance, instance.GetRobotDevSuiteMetadata())
+							if err != nil {
+								return err
+							}
+							instance.Status.RobotDevSuiteStatus.Created = true
+
+						}
+
+					case false:
+
+						instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
+
+						err := r.reconcileHandleAttachments(ctx, instance)
+						if err != nil {
+							return err
+						}
+
+					}
+
+				case false:
+
+					instance.Status.Phase = robotv1alpha1.RobotPhaseEnvironmentReady
+
+					err := r.reconcileHandleAttachments(ctx, instance)
 					if err != nil {
 						return err
 					}
-					instance.Status.LoaderJobStatus.Created = true
+
 				}
+
+			case robotv1alpha1.JobActive:
+
+				instance.Status.Phase = robotv1alpha1.RobotPhaseConfiguringEnvironment
+
+			case robotv1alpha1.JobFailed:
+
+				// TODO: add reason
+				instance.Status.Phase = robotv1alpha1.RobotPhaseFailed
 
 			}
 
 		case false:
 
-			instance.Status.Phase = robotv1alpha1.RobotPhaseCreatingDiscoveryServer
-			err := r.createDiscoveryServer(ctx, instance, instance.GetDiscoveryServerMetadata())
+			instance.Status.Phase = robotv1alpha1.RobotPhaseConfiguringEnvironment
+			err := r.createJob(ctx, instance, instance.GetLoaderJobMetadata())
 			if err != nil {
 				return err
 			}
-			instance.Status.DiscoveryServerStatus.Created = true
-
+			instance.Status.LoaderJobStatus.Created = true
 		}
 
 	case false:
@@ -321,11 +302,6 @@ func (r *RobotReconciler) reconcileCheckResources(ctx context.Context, instance 
 		return err
 	}
 
-	err = r.reconcileCheckDiscoveryServer(ctx, instance)
-	if err != nil {
-		return err
-	}
-
 	err = r.reconcileCheckLoaderJob(ctx, instance)
 	if err != nil {
 		return err
@@ -359,7 +335,6 @@ func (r *RobotReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&robotv1alpha1.Robot{}).
 		Owns(&corev1.PersistentVolumeClaim{}).
-		Owns(&robotv1alpha1.DiscoveryServer{}).
 		Owns(&batchv1.Job{}).
 		Owns(&robotv1alpha1.ROSBridge{}).
 		Owns(&robotv1alpha1.WorkspaceManager{}).

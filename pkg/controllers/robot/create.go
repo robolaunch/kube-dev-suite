@@ -32,26 +32,6 @@ func (r *RobotReconciler) createPVC(ctx context.Context, instance *robotv1alpha1
 	return nil
 }
 
-func (r *RobotReconciler) createDiscoveryServer(ctx context.Context, instance *robotv1alpha1.Robot, dsNamespacedName *types.NamespacedName) error {
-
-	discoveryServer := resources.GetDiscoveryServer(instance, dsNamespacedName)
-
-	err := ctrl.SetControllerReference(instance, discoveryServer, r.Scheme)
-	if err != nil {
-		return err
-	}
-
-	err = r.Create(ctx, discoveryServer)
-	if err != nil && errors.IsAlreadyExists(err) {
-		return nil
-	} else if err != nil {
-		return err
-	}
-
-	logger.Info("STATUS: Discovery server " + discoveryServer.Name + " is created.")
-	return nil
-}
-
 func (r *RobotReconciler) createJob(ctx context.Context, instance *robotv1alpha1.Robot, jobNamespacedName *types.NamespacedName) error {
 
 	activeNode, err := r.reconcileCheckNode(ctx, instance)
