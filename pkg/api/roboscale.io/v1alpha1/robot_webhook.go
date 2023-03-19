@@ -56,11 +56,6 @@ func (r *Robot) ValidateCreate() error {
 		return err
 	}
 
-	err = r.checkDistributions()
-	if err != nil {
-		return err
-	}
-
 	err = r.checkRobotDevSuite()
 	if err != nil {
 		return err
@@ -74,11 +69,6 @@ func (r *Robot) ValidateUpdate(old runtime.Object) error {
 	robotlog.Info("validate update", "name", r.Name)
 
 	err := r.checkTenancyLabels()
-	if err != nil {
-		return err
-	}
-
-	err = r.checkDistributions()
 	if err != nil {
 		return err
 	}
@@ -119,15 +109,6 @@ func (r *Robot) checkTenancyLabels() error {
 	if _, ok := labels[internal.CLOUD_INSTANCE_ALIAS_LABEL_KEY]; !ok {
 		return errors.New("cloud instance alias label should be added with key " + internal.CLOUD_INSTANCE_ALIAS_LABEL_KEY)
 	}
-	return nil
-}
-
-func (r *Robot) checkDistributions() error {
-
-	if len(r.Spec.Distributions) == 2 && (r.Spec.Distributions[0] == ROSDistroHumble || r.Spec.Distributions[1] == ROSDistroHumble) {
-		return errors.New("humble cannot be used in a multidistro environment")
-	}
-
 	return nil
 }
 

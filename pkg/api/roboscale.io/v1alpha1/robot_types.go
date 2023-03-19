@@ -12,7 +12,7 @@ func init() {
 //+genclient
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
-//+kubebuilder:printcolumn:name="Distributions",type=string,JSONPath=`.spec.distributions`
+//+kubebuilder:printcolumn:name="Environment",type=string,JSONPath=`.spec.environment`
 //+kubebuilder:printcolumn:name="Phase",type=string,JSONPath=`.status.phase`
 
 // Robot is the Schema for the robots API
@@ -38,20 +38,14 @@ type RobotList struct {
 // ********************************
 
 // ROS distro selection. Allowed distros are Foxy and Galactic. It is aimed to support Humble, Melodic and Noetic in further versions.
-// +kubebuilder:validation:Enum=foxy;galactic;noetic;melodic;humble
-type ROSDistro string
+// +kubebuilder:validation:Enum=ubuntu-focal;ubuntu-jammy
+type Environment string
 
 const (
-	// ROS Melodic Morenia
-	ROSDistroMelodic ROSDistro = "melodic"
-	// ROS Noetic Ninjemys
-	ROSDistroNoetic ROSDistro = "noetic"
-	// ROS 2 Foxy Fitzroy
-	ROSDistroFoxy ROSDistro = "foxy"
-	// ROS 2 Galactic Geochelone
-	ROSDistroGalactic ROSDistro = "galactic"
-	// ROS 2 Humble Hawksbill
-	ROSDistroHumble ROSDistro = "humble"
+	// Ubuntu 20.04 - Focal Fossa
+	EnvironmentUbuntuFocal Environment = "ubuntu-focal"
+	// Ubuntu 22.04 - Jammy Jellyfish
+	EnvironmentUbuntuJammy Environment = "ubuntu-jammy"
 )
 
 // RMW implementation selection. Robot operator currently supports only FastRTPS. See https://docs.ros.org/en/foxy/How-To-Guides/Working-with-multiple-RMW-implementations.html.
@@ -105,9 +99,7 @@ type RootDNSConfig struct {
 type RobotSpec struct {
 	// ROS distro to be used.
 	// +kubebuilder:validation:Required
-	// +kubebuilder:validation:MinItems=1
-	// +kubebuilder:validation:MaxItems=2
-	Distributions []ROSDistro `json:"distributions"`
+	Environment Environment `json:"environment"`
 	// Resource limitations of robot containers.
 	Storage Storage `json:"storage,omitempty"`
 	// Workspace manager template
