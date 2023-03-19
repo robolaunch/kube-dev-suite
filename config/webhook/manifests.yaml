@@ -11,7 +11,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-robotide
+      path: /mutate-dev-roboscale-io-v1alpha1-robotide
   failurePolicy: Fail
   name: mrobotide.kb.io
   rules:
@@ -31,7 +31,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-robotvdi
+      path: /mutate-dev-roboscale-io-v1alpha1-robotvdi
   failurePolicy: Fail
   name: mrobotvdi.kb.io
   rules:
@@ -51,7 +51,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-workspacemanager
+      path: /mutate-dev-roboscale-io-v1alpha1-workspacemanager
   failurePolicy: Fail
   name: mworkspacemanager.kb.io
   rules:
@@ -71,7 +71,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-buildmanager
+      path: /mutate-dev-roboscale-io-v1alpha1-buildmanager
   failurePolicy: Fail
   name: mbuildmanager.kb.io
   rules:
@@ -91,47 +91,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-launchmanager
-  failurePolicy: Fail
-  name: mlaunchmanager.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - launchmanagers
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-metricscollector
-  failurePolicy: Fail
-  name: mmetricscollector.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - metricscollectors
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-robot
+      path: /mutate-dev-roboscale-io-v1alpha1-robot
   failurePolicy: Fail
   name: mrobot.kb.io
   rules:
@@ -144,26 +104,6 @@ webhooks:
     - UPDATE
     resources:
     - robots
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /mutate-robot-roboscale-io-v1alpha1-discoveryserver
-  failurePolicy: Fail
-  name: mdiscoveryserver.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - discoveryservers
   sideEffects: None
 ---
 apiVersion: admissionregistration.k8s.io/v1
@@ -178,7 +118,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-robotide
+      path: /validate-dev-roboscale-io-v1alpha1-robotide
   failurePolicy: Fail
   name: vrobotide.kb.io
   rules:
@@ -198,7 +138,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-robotvdi
+      path: /validate-dev-roboscale-io-v1alpha1-robotvdi
   failurePolicy: Fail
   name: vrobotvdi.kb.io
   rules:
@@ -218,7 +158,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-workspacemanager
+      path: /validate-dev-roboscale-io-v1alpha1-workspacemanager
   failurePolicy: Fail
   name: vworkspacemanager.kb.io
   rules:
@@ -238,7 +178,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-buildmanager
+      path: /validate-dev-roboscale-io-v1alpha1-buildmanager
   failurePolicy: Fail
   name: vbuildmanager.kb.io
   rules:
@@ -258,47 +198,7 @@ webhooks:
     service:
       name: webhook-service
       namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-launchmanager
-  failurePolicy: Fail
-  name: vlaunchmanager.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - launchmanagers
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-metricscollector
-  failurePolicy: Fail
-  name: vmetricscollector.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - metricscollectors
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-robot
+      path: /validate-dev-roboscale-io-v1alpha1-robot
   failurePolicy: Fail
   name: vrobot.kb.io
   rules:
@@ -311,24 +211,4 @@ webhooks:
     - UPDATE
     resources:
     - robots
-  sideEffects: None
-- admissionReviewVersions:
-  - v1
-  clientConfig:
-    service:
-      name: webhook-service
-      namespace: system
-      path: /validate-robot-roboscale-io-v1alpha1-discoveryserver
-  failurePolicy: Fail
-  name: vdiscoveryserver.kb.io
-  rules:
-  - apiGroups:
-    - dev.roboscale.io
-    apiVersions:
-    - v1alpha1
-    operations:
-    - CREATE
-    - UPDATE
-    resources:
-    - discoveryservers
   sideEffects: None

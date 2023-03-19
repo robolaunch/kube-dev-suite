@@ -3,48 +3,31 @@
 # It should be run by config/default
 resources:
 - bases/dev.roboscale.io_robots.yaml
-- bases/dev.roboscale.io_discoveryservers.yaml
-- bases/dev.roboscale.io_rosbridges.yaml
 - bases/dev.roboscale.io_buildmanagers.yaml
-- bases/dev.roboscale.io_launchmanagers.yaml
 - bases/dev.roboscale.io_robotdevsuites.yaml
 - bases/dev.roboscale.io_robotvdis.yaml
 - bases/dev.roboscale.io_robotides.yaml
-- bases/dev.roboscale.io_robotartifacts.yaml
-- bases/dev.roboscale.io_metricscollectors.yaml
 - bases/dev.roboscale.io_workspacemanagers.yaml
-- bases/multicluster.x-k8s.io_serviceexports.yaml
-- bases/multicluster.x-k8s.io_serviceimports.yaml
 #+kubebuilder:scaffold:crdkustomizeresource
 
 patchesStrategicMerge:
 # [WEBHOOK] To enable webhook, uncomment all the sections with [WEBHOOK] prefix.
 # patches here are for enabling the conversion webhook for each CRD
 - patches/webhook_in_robots.yaml
-#- patches/webhook_in_discoveryservers.yaml
-#- patches/webhook_in_rosbridges.yaml
 - patches/webhook_in_buildmanagers.yaml
-- patches/webhook_in_launchmanagers.yaml
 #- patches/webhook_in_robotdevsuites.yaml
 - patches/webhook_in_robotvdis.yaml
 #- patches/webhook_in_robotides.yaml
-#- patches/webhook_in_robotartifacts.yaml
-- patches/webhook_in_metricscollectors.yaml
 - patches/webhook_in_workspacemanagers.yaml
 #+kubebuilder:scaffold:crdkustomizewebhookpatch
 
 # [CERTMANAGER] To enable cert-manager, uncomment all the sections with [CERTMANAGER] prefix.
 # patches here are for enabling the CA injection for each CRD
 - patches/cainjection_in_robots.yaml
-#- patches/cainjection_in_discoveryservers.yaml
-#- patches/cainjection_in_rosbridges.yaml
 - patches/cainjection_in_buildmanagers.yaml
-- patches/cainjection_in_launchmanagers.yaml
 #- patches/cainjection_in_robotdevsuites.yaml
 - patches/cainjection_in_robotvdis.yaml
 #- patches/cainjection_in_robotides.yaml
-#- patches/cainjection_in_robotartifacts.yaml
-- patches/cainjection_in_metricscollectors.yaml
 - patches/cainjection_in_workspacemanagers.yaml
 #+kubebuilder:scaffold:crdkustomizecainjectionpatch
 

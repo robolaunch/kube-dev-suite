@@ -68,43 +68,7 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - pods/exec
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - ""
-  resources:
   - services
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - multicluster.x-k8s.io
-  resources:
-  - serviceexports
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - networking.k8s.io
-  resources:
-  - ingresses
   verbs:
   - create
   - delete
@@ -154,20 +118,6 @@ rules:
 - apiGroups:
   - dev.roboscale.io
   resources:
-  - discoveryservers/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - discoveryservers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
   - launchmanagers
   verbs:
   - create
@@ -177,46 +127,6 @@ rules:
   - patch
   - update
   - watch
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - launchmanagers/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - launchmanagers/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - metricscollectors
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - metricscollectors/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - metricscollectors/status
-  verbs:
-  - get
-  - patch
-  - update
 - apiGroups:
   - dev.roboscale.io
   resources:
@@ -336,20 +246,6 @@ rules:
 - apiGroups:
   - dev.roboscale.io
   resources:
-  - rosbridges/finalizers
-  verbs:
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
-  - rosbridges/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - dev.roboscale.io
-  resources:
   - workspacemanagers
   verbs:
   - create
@@ -373,3 +269,15 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
