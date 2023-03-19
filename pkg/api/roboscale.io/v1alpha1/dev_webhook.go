@@ -23,7 +23,7 @@ func (r *RobotIDE) SetupWebhookWithManager(mgr ctrl.Manager) error {
 		Complete()
 }
 
-//+kubebuilder:webhook:path=/mutate-robot-roboscale-io-v1alpha1-robotide,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotides,verbs=create;update,versions=v1alpha1,name=mrobotide.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/mutate-dev-roboscale-io-v1alpha1-robotide,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotides,verbs=create;update,versions=v1alpha1,name=mrobotide.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Defaulter = &RobotIDE{}
 
@@ -32,7 +32,7 @@ func (r *RobotIDE) Default() {
 	robotidelog.Info("default", "name", r.Name)
 }
 
-//+kubebuilder:webhook:path=/validate-robot-roboscale-io-v1alpha1-robotide,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotides,verbs=create;update,versions=v1alpha1,name=vrobotide.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/validate-dev-roboscale-io-v1alpha1-robotide,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotides,verbs=create;update,versions=v1alpha1,name=vrobotide.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Validator = &RobotIDE{}
 
@@ -111,7 +111,7 @@ func (r *RobotVDI) SetupWebhookWithManager(mgr ctrl.Manager) error {
 		Complete()
 }
 
-//+kubebuilder:webhook:path=/mutate-robot-roboscale-io-v1alpha1-robotvdi,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotvdis,verbs=create;update,versions=v1alpha1,name=mrobotvdi.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/mutate-dev-roboscale-io-v1alpha1-robotvdi,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotvdis,verbs=create;update,versions=v1alpha1,name=mrobotvdi.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Defaulter = &RobotVDI{}
 
@@ -120,7 +120,7 @@ func (r *RobotVDI) Default() {
 	robotvdilog.Info("default", "name", r.Name)
 }
 
-//+kubebuilder:webhook:path=/validate-robot-roboscale-io-v1alpha1-robotvdi,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotvdis,verbs=create;update,versions=v1alpha1,name=vrobotvdi.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/validate-dev-roboscale-io-v1alpha1-robotvdi,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=robotvdis,verbs=create;update,versions=v1alpha1,name=vrobotvdi.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Validator = &RobotVDI{}
 

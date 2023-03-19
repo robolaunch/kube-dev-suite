@@ -43,7 +43,7 @@ func (r *WorkspaceManager) SetupWebhookWithManager(mgr ctrl.Manager) error {
 		Complete()
 }
 
-//+kubebuilder:webhook:path=/mutate-robot-roboscale-io-v1alpha1-workspacemanager,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=workspacemanagers,verbs=create;update,versions=v1alpha1,name=mworkspacemanager.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/mutate-dev-roboscale-io-v1alpha1-workspacemanager,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=workspacemanagers,verbs=create;update,versions=v1alpha1,name=mworkspacemanager.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Defaulter = &WorkspaceManager{}
 
@@ -53,7 +53,7 @@ func (r *WorkspaceManager) Default() {
 	// _ = r.setRepositoryInfo()
 }
 
-//+kubebuilder:webhook:path=/validate-robot-roboscale-io-v1alpha1-workspacemanager,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=workspacemanagers,verbs=create;update,versions=v1alpha1,name=vworkspacemanager.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/validate-dev-roboscale-io-v1alpha1-workspacemanager,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=workspacemanagers,verbs=create;update,versions=v1alpha1,name=vworkspacemanager.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Validator = &WorkspaceManager{}
 
@@ -162,7 +162,7 @@ func (r *BuildManager) SetupWebhookWithManager(mgr ctrl.Manager) error {
 		Complete()
 }
 
-//+kubebuilder:webhook:path=/mutate-robot-roboscale-io-v1alpha1-buildmanager,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=buildmanagers,verbs=create;update,versions=v1alpha1,name=mbuildmanager.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/mutate-dev-roboscale-io-v1alpha1-buildmanager,mutating=true,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=buildmanagers,verbs=create;update,versions=v1alpha1,name=mbuildmanager.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Defaulter = &BuildManager{}
 
@@ -171,7 +171,7 @@ func (r *BuildManager) Default() {
 	buildmanagerlog.Info("default", "name", r.Name)
 }
 
-//+kubebuilder:webhook:path=/validate-robot-roboscale-io-v1alpha1-buildmanager,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=buildmanagers,verbs=create;update,versions=v1alpha1,name=vbuildmanager.kb.io,admissionReviewVersions=v1
+//+kubebuilder:webhook:path=/validate-dev-roboscale-io-v1alpha1-buildmanager,mutating=false,failurePolicy=fail,sideEffects=None,groups=dev.roboscale.io,resources=buildmanagers,verbs=create;update,versions=v1alpha1,name=vbuildmanager.kb.io,admissionReviewVersions=v1
 
 var _ webhook.Validator = &BuildManager{}
 
