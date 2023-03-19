@@ -127,7 +127,6 @@ extract: manifests kustomize ## Extract controller YAMLs, not deploy
 .PHONY: select-node
 select-node: 
 	yq -i e '(select(.kind == "Deployment") | .spec.template.spec.nodeSelector."${LABEL_KEY}") = "${LABEL_VAL}"' $(LOCAL_MANIFEST_LOCATION)/robot_operator.yaml
-	yq -i e '(select(.kind == "Deployment") | .spec.template.spec.nodeSelector."${LABEL_KEY}") = "${LABEL_VAL}"' $(LOCAL_MANIFEST_LOCATION)/cert_manager_1.8.0.yaml
 
 .PHONY: get-cert-manager
 get-cert-manager: 

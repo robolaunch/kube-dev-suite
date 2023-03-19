@@ -16,8 +16,8 @@ spec:
   scope: Namespaced
   versions:
   - additionalPrinterColumns:
-    - jsonPath: .spec.distributions
-      name: Distributions
+    - jsonPath: .spec.environment
+      name: Environment
       type: string
     - jsonPath: .status.phase
       name: Phase
@@ -196,22 +196,12 @@ spec:
               development:
                 description: Development enabled
                 type: boolean
-              distributions:
+              environment:
                 description: ROS distro to be used.
-                items:
-                  description: ROS distro selection. Allowed distros are Foxy and
-                    Galactic. It is aimed to support Humble, Melodic and Noetic in
-                    further versions.
-                  enum:
-                  - foxy
-                  - galactic
-                  - noetic
-                  - melodic
-                  - humble
-                  type: string
-                maxItems: 2
-                minItems: 1
-                type: array
+                enum:
+                - ubuntu-focal
+                - ubuntu-jammy
+                type: string
               robotDevSuiteTemplate:
                 description: Robot development suite template
                 properties:
@@ -382,7 +372,7 @@ spec:
                     type: string
                 type: object
             required:
-            - distributions
+            - environment
             type: object
           status:
             description: RobotStatus defines the observed state of Robot

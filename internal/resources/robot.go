@@ -14,7 +14,6 @@ import (
 	"github.com/robolaunch/kube-dev-suite/internal"
 	"github.com/robolaunch/kube-dev-suite/internal/configure"
 	"github.com/robolaunch/kube-dev-suite/internal/label"
-	"github.com/robolaunch/kube-dev-suite/internal/node"
 	robotv1alpha1 "github.com/robolaunch/kube-dev-suite/pkg/api/roboscale.io/v1alpha1"
 )
 
@@ -75,19 +74,12 @@ func GetLoaderJob(robot *robotv1alpha1.Robot, jobNamespacedName *types.Namespace
 	copierCmdBuilder.WriteString(" yes | cp -rf /etc /ros/;")
 	copierCmdBuilder.WriteString(" echo \"DONE\"")
 
-	readyRobotProp := node.GetReadyRobotProperties(*robot)
-
 	var preparerCmdBuilder strings.Builder
-	preparerCmdBuilder.WriteString("mv " + filepath.Join("/etc", "apt", "sources.list.d", "ros2.list") + " temp1")
-	preparerCmdBuilder.WriteString(" && mv " + filepath.Join("/etc", "apt", "sources.list") + " temp2")
+	preparerCmdBuilder.WriteString("mv " + filepath.Join("/etc", "apt", "sources.list") + " temp")
 	preparerCmdBuilder.WriteString(" && apt-get update")
-	preparerCmdBuilder.WriteString(" && mv temp1 " + filepath.Join("/etc", "apt", "sources.list.d", "ros2.list"))
-	preparerCmdBuilder.WriteString(" && mv temp2 " + filepath.Join("/etc", "apt", "sources.list"))
+	preparerCmdBuilder.WriteString(" && mv temp " + filepath.Join("/etc", "apt", "sources.list"))
 	preparerCmdBuilder.WriteString(" && apt-get dist-upgrade -y")
 	preparerCmdBuilder.WriteString(" && apt-get update")
-	if !readyRobotProp.Enabled { // do no run rosdep init if ready robot
-		preparerCmdBuilder.WriteString(" && rosdep init")
-	}
 
 	var clonerCmdBuilder strings.Builder
 	for wsKey, ws := range robot.Spec.WorkspaceManagerTemplate.Workspaces {
