@@ -169,7 +169,26 @@ func GetLoaderJob(robot *robotv1alpha1.Robot, jobNamespacedName *types.Namespace
 			},
 		}
 
+		var cudaToolkitInstallerCmdBuilder strings.Builder
+
+		cudaToolkitInstallerCmdBuilder.WriteString("apt-get update && ")
+		cudaToolkitInstallerCmdBuilder.WriteString("apt-get install nvidia-cuda-toolkit")
+
+		cudaToolkitInstaller := corev1.Container{
+			Name:            "cuda-toolkit-installer",
+			Image:           robot.Status.Image,
+			Command:         internal.Bash(cudaToolkitInstallerCmdBuilder.String()),
+			ImagePullPolicy: corev1.PullAlways,
+			VolumeMounts: []corev1.VolumeMount{
+				configure.GetVolumeMount("", configure.GetVolumeVar(robot)),
+				configure.GetVolumeMount("", configure.GetVolumeUsr(robot)),
+				configure.GetVolumeMount("", configure.GetVolumeOpt(robot)),
+				configure.GetVolumeMount("", configure.GetVolumeEtc(robot)),
+			},
+		}
+
 		podSpec.InitContainers = append(podSpec.InitContainers, driverInstaller)
+		podSpec.InitContainers = append(podSpec.InitContainers, cudaToolkitInstaller)
 
 	}
 
