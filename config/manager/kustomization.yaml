@@ -5,4 +5,4 @@ kind: Kustomization
 images:
 - name: controller
   newName: robolaunchio/kube-dev-suite-controller-manager-dev
-  newTag: platform-v0.0.09
+  newTag: platform-v0.0.14
